@@ -1,7 +1,6 @@
 package com.innova.util;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -15,7 +14,7 @@ public class DatabaseConnection extends DatabaseInformation{
     private  String userPassword=this.getUserPassword();
 
     //Singleton Design Pattern
-    private DatabaseConnection instance;
+    private static DatabaseConnection instance;
 
     //private constructor
     private DatabaseConnection() {
@@ -31,7 +30,7 @@ public class DatabaseConnection extends DatabaseInformation{
     }
     //amaçım eğer bağlantı varsa onu kullanmak
     //eğer bağlantı kapatılmış veya bağlantı yoksa instance yapmak
-    public DatabaseConnection getInstance() {
+    public static DatabaseConnection getInstance() {
         try {
             if(instance==null)
                 instance=new DatabaseConnection();
@@ -42,16 +41,16 @@ public class DatabaseConnection extends DatabaseInformation{
         }
         return instance;
     }
-//    public Connection getConnection() {
-//        return connection;
-//    }
-//
-//    public DatabaseConnection setConnection(Connection connection) {
-//        this.connection = connection;
-//        return this;
-//    }
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public DatabaseConnection setConnection(Connection connection) {
+        this.connection = connection;
+        return this;
+    }
 
     public static void main(String[] args) {
-        DatabaseConnection databaseConnection=new DatabaseConnection();
+        //DatabaseConnection databaseConnection=new DatabaseConnection();
     }
 }
